@@ -13,7 +13,8 @@ function NotesList() {
       {data &&
         data.map((note: Note) => (
           <NoteCard
-            key={note.title}
+            key={note._id}
+            id={note._id}
             title={note.title}
             descritption={note.description}
           />

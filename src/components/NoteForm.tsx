@@ -6,7 +6,7 @@ import { Note } from "../models/note.model";
 export default function NoteForm() {
   const addNote = trpc.note.create.useMutation();
   const utils = trpc.useContext();
-  const [note, setNote] = useState<Note>({ title: "", description: "" });
+  const [note, setNote] = useState({ title: "", description: "" });
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
