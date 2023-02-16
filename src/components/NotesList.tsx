@@ -1,9 +1,25 @@
 import { trpc } from "../utils/trpc";
+import NoteCard from "./NoteCard";
+import { Note } from "../models/note.model";
 
 function NotesList() {
-  const notes = trpc.note.get.useQuery();
+  const { data, isLoading, isError, error } = trpc.note.get.useQuery();
 
-  return <div>{JSON.stringify(notes.data)}</div>;
+  if (isError) <span>Error: {error.message}</span>;
+  if (isLoading) <span>Loading...</span>;
+
+  return (
+    <section>
+      {data &&
+        data.map((note: Note) => (
+          <NoteCard
+            key={note.title}
+            title={note.title}
+            descritption={note.description}
+          />
+        ))}
+    </section>
+  );
 }
 
 export default NotesList;
