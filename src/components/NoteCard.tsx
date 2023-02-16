@@ -9,6 +9,7 @@ interface Props {
 
 export default function NoteCard({ id, title, descritption, done }: Props) {
   const utils = trpc.useContext();
+  // delete, toggleDone => se definen en el back
   const deleteNote = trpc.note.delete.useMutation();
   const toggleDone = trpc.note.toggleDone.useMutation();
 
@@ -40,12 +41,28 @@ export default function NoteCard({ id, title, descritption, done }: Props) {
   };
 
   return (
-    <article>
-      <h1>{title}</h1>
-      <p>{descritption}</p>
+    <article className="flex justify-between items-center bg-zinc-500 p-2 mb-2">
+      <section>
+        <h2>{title}</h2>
+        <p>{descritption}</p>
+      </section>
 
-      <button onClick={handleDelete}>Delete</button>
-      <button onClick={handleToggle}>{done ? "Undone" : "Done"}</button>
+      <section className="flex gap-x-2">
+        <button
+          className="bg-red-500 h-10 px-3 rounded-md text-white"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+        <button
+          className={` px-3 h-10 rounded-md text-white ${
+            done ? "bg-zinc-500" : "bg-green-500"
+          }`}
+          onClick={handleToggle}
+        >
+          {done ? "Undone" : "Done"}
+        </button>
+      </section>
     </article>
   );
 }

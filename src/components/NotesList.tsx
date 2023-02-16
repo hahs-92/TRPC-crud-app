@@ -5,11 +5,10 @@ import { Note } from "../models/note.model";
 function NotesList() {
   const { data, isLoading, isError, error } = trpc.note.get.useQuery();
 
-  if (isError) <span>Error: {error.message}</span>;
-  if (isLoading) <span>Loading...</span>;
-
   return (
-    <section>
+    <section className="flex flex-col">
+      {isError && <span>Error: {error}</span>}
+      {isLoading && <span>Loading...</span>}
       {data &&
         data.map((note: Note) => (
           <NoteCard

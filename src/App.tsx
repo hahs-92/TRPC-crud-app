@@ -21,8 +21,11 @@ function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <NoteForm />
-        <NotesList />
+        <main className="max-w-xl m-auto h-screen py-40">
+          <h1 className="text-5xl font-bold text-center">Notes</h1>
+          <NoteForm />
+          <NotesList />
+        </main>
       </QueryClientProvider>
     </trpc.Provider>
   );
