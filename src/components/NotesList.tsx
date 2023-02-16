@@ -17,6 +17,7 @@ function NotesList() {
             id={note._id}
             title={note.title}
             descritption={note.description}
+            done={note.done}
           />
         ))}
     </section>
